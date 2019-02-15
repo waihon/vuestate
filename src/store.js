@@ -20,9 +20,16 @@ export default new Vuex.Store({
   mutations: {
     ADD_LINK: (state, link) => {
       state.links.push(link);
+    },
+    REMOVE_LINK: (state, linkIndex) => {
+      state.links.splice(linkIndex, 1);
     }
   },
   actions: {
-
+    removeLink: (context, linkIndex) => {
+      // context provides us with the same methods and properties on the store instance
+      // context.commit is necessary for asynchronous operations
+      context.commit("REMOVE_LINK", linkIndex)
+    }
   }
 })
