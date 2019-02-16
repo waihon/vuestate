@@ -23,6 +23,9 @@ export default new Vuex.Store({
     },
     REMOVE_LINK: (state, linkIndex) => {
       state.links.splice(linkIndex, 1);
+    },
+    REMOVE_ALL: (state) => {
+      state.links = [];
     }
   },
   actions: {
@@ -30,6 +33,14 @@ export default new Vuex.Store({
       // context provides us with the same methods and properties on the store instance
       // context.commit is necessary for asynchronous operations
       context.commit("REMOVE_LINK", linkIndex)
+    },
+    removeAll ({commit}) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          commit('REMOVE_ALL');
+          resolve();
+        }, 1500)
+      })
     }
   }
 })
